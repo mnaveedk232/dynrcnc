@@ -1,0 +1,6 @@
+numpy>=1.23
+pandas>=1.5
+networkx>=2.8
+scipy>=1.9
+MDAnalysis>=2.4
+mdtraj>=1.9
