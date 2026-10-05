@@ -4,13 +4,13 @@ DynRCNC
 =======
 Predicts double-mutation thermodynamic non-additivity in proteins.
 
-Method: Static RCNC network plus MD-derived dynamic coupling (DCCM, RMSF),
-        organised as a three-tier hierarchical framework of six decision
+Method: Static RCNC network plus MD-derived dynamic coupling (Z-scored DCCM),
+        organized as a three-tier hierarchical framework of six decision
         criteria (C1-C6). Each criterion is implemented by one or more
         internal rules; see CRITERION_OF_RULE below for the mapping.
 
-Benchmark: 271 experimentally characterised double-mutation pairs across
-           eight proteins.
+Benchmark: 265 experimentally characterized double-mutation pairs across
+           seven soluble proteins (1QJP, a membrane protein, is excluded).
 
 
 Usage:
@@ -57,23 +57,20 @@ PROTEINS = {
     '2LZM': {'node_file': f'{BASE}/2lzm_md/2lzm.N', 'edge_file': f'{BASE}/2lzm_md/2lzm.E',
              'gro': f'{BASE}/2lzm_md/2lzm_md_first_frame.gro', 'xtc': f'{BASE}/2lzm_md/2lzm_md_reduced.xtc', 'fps': 100},
     '1PGA': {'node_file': f'{BASE}/1pga_md/1pga.N', 'edge_file': f'{BASE}/1pga_md/1pga.E',
-             'gro': f'{BASE}/1pga_md/1pga_md_first_frame.gro', 'xtc': f'{BASE}/1pga_md/1pga_md_reduced.xtc', 'fps': 100},
-    # 1CSP trajectory is sampled at 40 ps/frame (200 ns total, 5001 frames),
-    # unlike the 100 ps/frame of the other proteins; fps below reflects this.
+             'gro': f'{BASE}/1pga_md/1pga_md_first_frame.gro', 'xtc': f'{BASE}/1pga_md/1pga_md_reduced.xtc', 'fps': 40},
+    # The 1PGA and 1CSP trajectories are sampled at 40 ps/frame (200 ns total, 5001 frames),
+    # unlike the 100 ps/frame (2001 frames) of the other proteins; fps below reflects this.
     '1CSP': {'node_file': f'{BASE}/1csp_md/1csp.N', 'edge_file': f'{BASE}/1csp_md/1csp.E',
              'gro': f'{BASE}/1csp_md/1csp_md_first_frame.gro', 'xtc': f'{BASE}/1csp_md/1csp_md_reduced.xtc', 'fps': 40},
     '2RN2': {'node_file': f'{BASE}/2rn2_md/2rn2.N', 'edge_file': f'{BASE}/2rn2_md/2rn2.E',
              'gro': f'{BASE}/2rn2_md/2rn2_md_first_frame.gro', 'xtc': f'{BASE}/2rn2_md/2rn2_md_reduced.xtc', 'fps': 100},
     '2CI2': {'node_file': f'{BASE}/2ci2_md/2ci2.N', 'edge_file': f'{BASE}/2ci2_md/2ci2.E',
              'gro': f'{BASE}/2ci2_md/2ci2_md_first_frame.gro', 'xtc': f'{BASE}/2ci2_md/2ci2_md_reduced.xtc', 'fps': 100},
-    # 1QJP (OmpA, outer-membrane beta-barrel), added in place of 1OH0.
-    '1QJP': {'node_file': f'{BASE}/1qjp_md/1qjp.N', 'edge_file': f'{BASE}/1qjp_md/1qjp.E',
-             'gro': f'{BASE}/1qjp_md/1qjp_md_first_frame.gro', 'xtc': f'{BASE}/1qjp_md/1qjp_md_reduced.xtc', 'fps': 100},
 }
 
-# The 271-pair benchmark ships with the code (repo root); the per-protein MD
+# The 265-pair benchmark ships with the code (repo root); the per-protein MD
 # data lives under BASE, one <pdb>_md/ folder per protein.
-DDG_FILE   = _DDG_OVERRIDE or './benchmark_271pairs.ddg'
+DDG_FILE   = _DDG_OVERRIDE or './benchmark_265pairs.ddg'
 OUTPUT_DIR = _OUT_OVERRIDE or './output'
 # Directory holding the per-pair virtual-edge predictions (ve2_<PDB>.csv) used
 # for the McNemar comparison against the best virtual-edge baseline. If these
@@ -98,12 +95,13 @@ C3_HELIX_ISO_SEP_MAX         = 30     # max sequence separation, isolated-helix 
 C3_HELIX_BOTH_ISO_SEP_MIN    = 4      # min sequence separation, both-isolated helix rule
 C3_HELIX_BOTH_ISO_SEP_MAX    = 30     # max sequence separation, both-isolated helix rule
 # ── C4  Sequential backbone (Tier 2, MD) ──
-C4_BACKBONE_CORR             = 0.55   # raw DCCM cutoff for sequential neighbours
+C4_BACKBONE_CORR             = 0.55   # raw DCCM cutoff for sequential neighbors
 # ── C5  Network topology (Tier 2, MD) ──
-C5_COMMON_NEIGHBOR_COUPLING  = 0.65   # |Z-DCCM| cutoff, shared network neighbour
+C5_COMMON_NEIGHBOR_COUPLING  = 0.65   # |Z-DCCM| cutoff, shared network neighbor
 C5_LINKED_COMM_COUPLING      = 1.00   # |Z-DCCM| cutoff, linked distant communities
 C5_HUB_BETWEENNESS           = 0.03   # betweenness-centrality cutoff defining a hub
 C5_HUB_SEP_MIN               = 15     # min sequence separation, hub-perturbation rule
+C5_HUB_MIN_COUPLING          = 0.15   # |Z-DCCM| below which a hub pair is returned as additive
 C5_LINKED_COMM_SEP_MIN       = 30     # min sequence separation, linked-community rule
 CHARGED_AA   = {'R', 'K', 'D', 'E'}
 MAJOR_SMALL_AA = {'G', 'A'}
@@ -148,9 +146,15 @@ CRITERION_OF_RULE = {
 # ─────────────────────────────────────────────
 def preprocess_ddg(ddg_df):
     """No deduplication. Every measured pair is retained as a separate data
-    point (following Zhang et al. 2024), giving the full 271-pair benchmark
+    point (following Zhang et al. 2024), giving the 265-pair benchmark
     reported in the manuscript. Pairs with identical mutation, pH, method and
-    dddG are genuine repeated measurements in the benchmark and are kept."""
+    dddG are genuine repeated measurements in the benchmark and are kept.
+    Rows of 1QJP (a membrane protein simulated without a lipid bilayer) are
+    removed if present, so the older 271-pair file also gives 265 pairs."""
+    n_before = len(ddg_df)
+    ddg_df = ddg_df[ddg_df['PDB'].astype(str).str.strip() != '1QJP']
+    if len(ddg_df) != n_before:
+        print(f"  Removed {n_before - len(ddg_df)} rows of 1QJP (not part of the benchmark)")
     return ddg_df.reset_index(drop=True)
 
 
@@ -242,12 +246,12 @@ def compute_md_features(gro, xtc, fps):
         mu, sigma = np.mean(vals), max(np.std(vals), 0.01)
         for i,j in pairs: z[i,j] = (dccm[i,j]-mu)/sigma
 
-    rmsf     = coords.std(axis=0).mean(axis=1)
+    rmsf     = coords.std(axis=0).mean(axis=1)   # not used by any rule; kept for the function signatures
     traj_skip = traj_full[start:]
     dssp_raw  = md.compute_dssp(traj_skip[::10], simplified=True)
     ss = [Counter(dssp_raw[:,k]).most_common(1)[0][0] for k in range(dssp_raw.shape[1])]
 
-    print(f"  MD: {len(resids)} residues, {len(traj_ca)} frames, RMSF={rmsf.mean():.4f}nm")
+    print(f"  MD: {len(resids)} residues, {len(traj_ca)} frames")
     return resids, rmap, dccm, z, rmsf, ss
 
 
@@ -356,7 +360,7 @@ def predict(s1, s2, mut_str, communities, r2c, G_nb, bc,
 
     # C5: Hub betweenness
     if (bc1 > _bc or bc2 > _bc) and seq > C5_HUB_SEP_MIN:
-        if zv < 0.15:
+        if zv < C5_HUB_MIN_COUPLING:
             return 'Additive', 'R12_C5_hub_no_dccm'
         return 'Non-additive', 'R10_C5_hub_perturbation'
 
@@ -448,7 +452,7 @@ def mcnemar_test(yt, yp, base_pred):
 def threshold_sensitivity(protein_dfs):
     all_df = pd.concat(protein_dfs.values()).copy()
     results = []
-    for t in np.linspace(0.5, 1.5, 10):
+    for t in np.arange(0.5, 1.5001, 0.1):
         df_t = all_df.copy()
         df_t['exp'] = df_t['dddG'].abs().apply(
             lambda x: 'Non-additive' if x >= t else 'Additive')
@@ -620,14 +624,14 @@ def main():
     t0 = time.time()
     print(f"\n{'='*62}")
     print(f"  DynRCNC")
-    print(f"  14 active rules | 3 tiers | 8 proteins")
+    print(f"  14 active rules | 3 tiers | 7 proteins")
     print(f"{'='*62}")
 
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     ddg_df = pd.read_csv(DDG_FILE, sep='\t', on_bad_lines='skip')
     ddg_df.columns = ddg_df.columns.str.strip()
     ddg_df = preprocess_ddg(ddg_df)
-    print(f"\nDDG loaded: {len(ddg_df)} pairs")
+    print(f"\nDDG loaded: {len(ddg_df)} pairs from {ddg_df['PDB'].nunique()} proteins")
 
     protein_dfs = {}; summary = []; skipped = []
 
