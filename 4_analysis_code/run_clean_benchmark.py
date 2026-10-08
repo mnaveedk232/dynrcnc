@@ -3,7 +3,7 @@
 Run DynRCNC on the CLEAN benchmark and produce the four result files
 ====================================================================
 This runs the model exactly as the manuscript pipeline does, but on the
-PBC-fixed, 1QJP-dropped 7-protein clean benchmark. It writes:
+PBC-fixed 7-protein clean benchmark. It writes:
 
     clean_all_predictions.csv      per-pair predictions (265 rows)
     clean_summary.csv              per-protein + COMBINED confusion + metrics
@@ -16,7 +16,7 @@ points the paths at the clean folder and renames the outputs with a clean_ prefi
 FOLDER LAYOUT expected (this script sits inside 00_clean_benchmark/):
     run_clean_benchmark.py     <- this file
     dynrcnc.py                 <- the model
-    benchmark_271pairs.ddg
+    benchmark_265pairs.ddg
     1stn_md/ 1stn.N 1stn.E md_first_frame.gro md_reduced.xtc
     1bni_md/ 2lzm_md/ 1pga_md/ 1csp_md/ 2rn2_md/ 2ci2_md/   (same pattern)
 
@@ -66,7 +66,7 @@ def main():
     # dynrcnc.py reads --base/--ddg/--out from argv, so set them here.
     sys.argv = ['dynrcnc.py',
                 '--base', HERE,
-                '--ddg', os.path.join(HERE, 'benchmark_271pairs.ddg'),
+                '--ddg', os.path.join(HERE, 'benchmark_265pairs.ddg'),
                 '--out', OUT]
     spec = importlib.util.spec_from_file_location('dynrcnc', os.path.join(HERE, 'dynrcnc.py'))
     dm = importlib.util.module_from_spec(spec)

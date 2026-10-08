@@ -5,10 +5,10 @@ Rule = rcnc_dyn.py predict_rcnc (Ming 2018 / Zhang 2024): same k=3 clique commun
 Run inside 04_baselines_265/:  python3 static_rcnc_265.py"""
 import os, sys, importlib.util, numpy as np, pandas as pd
 CLEAN=os.path.expanduser(os.environ.get('CLEAN_DIR','~/Desktop/revision_analysis/00_clean_benchmark'))
-sys.argv=['dynrcnc.py','--base',CLEAN,'--ddg',os.path.join(CLEAN,'benchmark_271pairs.ddg')]
+sys.argv=['dynrcnc.py','--base',CLEAN,'--ddg',os.path.join(CLEAN,'benchmark_265pairs.ddg')]
 spec=importlib.util.spec_from_file_location('dm',os.path.join(CLEAN,'dynrcnc.py'))
 dm=importlib.util.module_from_spec(spec); spec.loader.exec_module(dm)
-ddg=pd.read_csv(os.path.join(CLEAN,'benchmark_271pairs.ddg'),sep='\t',on_bad_lines='skip'); ddg.columns=ddg.columns.str.strip()
+ddg=pd.read_csv(os.path.join(CLEAN,'benchmark_265pairs.ddg'),sep='\t',on_bad_lines='skip'); ddg.columns=ddg.columns.str.strip()
 yt=[];yp=[]
 for pdb in ['1STN','1BNI','2LZM','1PGA','1CSP','2RN2','2CI2']:
     c=dm.PROTEINS[pdb]

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ML BASELINE for DynRCNC — CLEAN 265-pair benchmark (logic identical to ml_baseline_271.py).
+ML BASELINE for DynRCNC — CLEAN 265-pair benchmark.
 =================================================================
 Generates the 19 numerical features directly from dynrcnc.py's own pipeline
 (no external features.csv needed), then trains RandomForest / GradientBoosting /
@@ -8,9 +8,9 @@ LogisticRegression and reports in-sample + nested LOPOCV (protein-weighted) MCC.
 
 HOW TO RUN:
   1. Put this file in the SAME folder as dynrcnc.py
-  2. python3 ml_baseline_271.py
-     (or:  DYNRCNC_BASE=/path/to/data python3 ml_baseline_271.py)
-  3. It writes  ml_baseline_271_results.csv   <-- give this file to Claude.
+  2. python3 ml_baseline_265.py
+     (or:  DYNRCNC_BASE=/path/to/data python3 ml_baseline_265.py)
+  3. It writes  ml_baseline_265_results.csv 
 
 Notes:
   - Uses fixed seed (42) everywhere for reproducibility.
@@ -30,7 +30,7 @@ np.random.seed(SEED)
 # ── 1. Load dynrcnc.py as a module (functions only, skip its __main__) ──
 HERE = os.path.dirname(os.path.abspath(__file__))
 CLEAN = os.path.expanduser(os.environ.get('CLEAN_DIR', '~/Desktop/revision_analysis/00_clean_benchmark'))
-sys.argv = ['dynrcnc.py', '--base', CLEAN, '--ddg', os.path.join(CLEAN, 'benchmark_271pairs.ddg')]
+sys.argv = ['dynrcnc.py', '--base', CLEAN, '--ddg', os.path.join(CLEAN, 'benchmark_265pairs.ddg')]
 MODEL_PATH = os.path.join(CLEAN, 'dynrcnc.py')
 src = open(MODEL_PATH).read().split("if __name__")[0]
 mod = types.ModuleType("dyn"); mod.__dict__['__name__'] = 'dyn'
@@ -47,13 +47,13 @@ has_major_vol_change = mod.has_major_vol_change
 ddg = pd.read_csv(DDG_FILE, sep='\t', on_bad_lines='skip')
 ddg.columns = ddg.columns.str.strip()
 
-# ── 2. Build the 19-feature table for all 271 pairs ──
+# ── 2. Build the 19-feature table for all 265 pairs ──
 FEATS = ['seq_dist','same_community','adj_comm','comm_linked','in_direct',
          'z_dccm','raw_dccm','bc_max','bc_min','rmsf_z_max','rmsf_z_min',
          'n_common_neigh','both_coil','both_helix','both_struct',
          'both_isolated','one_isolated','both_charged_kept','vol_change_any']
 
-print("Building features (1QJP absent, so it is skipped) (this computes MD features per protein)...")
+print("Building features (this computes MD features per protein)...")
 rows = []
 for pdb, cfg in PROTEINS.items():
     miss = [k for k in ['node_file','edge_file','gro','xtc'] if not os.path.exists(cfg[k])]
@@ -172,5 +172,4 @@ res = pd.DataFrame(out)
 res.to_csv(os.path.join(HERE, 'ml_baseline_265_results.csv'), index=False)
 print('\n' + '='*70)
 print('  Saved -> ml_baseline_265_results.csv   AND   features_265.csv')
-print('  (Give ml_baseline_271_results.csv to Claude for verification.)')
 print('='*70)

@@ -1,0 +1,68 @@
+NodeId	Chain	Position	Residue	Type	Dssp	Degree	Bfactor_CA	x	y	z	pdbFileName	Model
+A:1:_:MET	A	1	MET	RES	 	1	0.000	8.694	25.981	8.686	input_file.pdb#1.A	1
+A:2:_:LEU	A	2	LEU	RES	E	6	0.000	8.458	22.612	10.126	input_file.pdb#2.A	1
+A:3:_:GLU	A	3	GLU	RES	E	3	0.000	9.371	22.051	13.749	input_file.pdb#3.A	1
+A:4:_:GLY	A	4	GLY	RES	E	2	0.000	11.316	18.988	14.771	input_file.pdb#4.A	1
+A:5:_:LYS	A	5	LYS	RES	E	6	0.000	13.851	17.457	17.001	input_file.pdb#5.A	1
+A:6:_:VAL	A	6	VAL	RES	E	2	0.000	17.476	16.691	16.583	input_file.pdb#6.A	1
+A:7:_:LYS	A	7	LYS	RES	E	1	0.000	17.476	12.914	16.629	input_file.pdb#7.A	1
+A:8:_:TRP	A	8	TRP	RES	E	4	0.000	21.218	12.761	16.768	input_file.pdb#8.A	1
+A:9:_:PHE	A	9	PHE	RES	E	0	0.000	24.077	14.854	15.793	input_file.pdb#9.A	1
+A:10:_:ASN	A	10	ASN	RES	E	2	0.000	27.613	13.935	15.468	input_file.pdb#10.A	1
+A:11:_:SER	A	11	SER	RES	T	0	0.000	29.293	17.049	16.815	input_file.pdb#11.A	1
+A:12:_:GLU	A	12	GLU	RES	T	0	0.000	32.712	16.130	15.421	input_file.pdb#12.A	1
+A:13:_:LYS	A	13	LYS	RES	T	0	0.000	31.651	15.211	11.891	input_file.pdb#13.A	1
+A:14:_:GLY	A	14	GLY	RES	T	2	0.000	29.087	18.018	11.659	input_file.pdb#14.A	1
+A:15:_:PHE	A	15	PHE	RES	E	5	0.000	25.875	16.232	10.544	input_file.pdb#15.A	1
+A:16:_:GLY	A	16	GLY	RES	E	2	0.000	22.928	14.190	11.798	input_file.pdb#16.A	1
+A:17:_:PHE	A	17	PHE	RES	E	5	0.000	19.126	13.629	11.427	input_file.pdb#17.A	1
+A:18:_:ILE	A	18	ILE	RES	E	5	0.000	16.032	15.619	12.449	input_file.pdb#18.A	1
+A:19:_:GLU	A	19	GLU	RES	E	3	0.000	12.849	13.986	13.517	input_file.pdb#19.A	1
+A:20:_:VAL	A	20	VAL	RES	 	1	0.000	9.607	15.415	12.356	input_file.pdb#20.A	1
+A:21:_:GLU	A	21	GLU	RES	S	0	0.000	6.248	13.680	12.634	input_file.pdb#21.A	1
+A:22:_:GLY	A	22	GLY	RES	S	0	0.000	4.745	12.301	9.522	input_file.pdb#22.A	1
+A:23:_:GLN	A	23	GLN	RES	S	0	0.000	7.898	12.455	7.478	input_file.pdb#23.A	1
+A:24:_:ASP	A	24	ASP	RES	 	0	0.000	11.081	10.515	7.757	input_file.pdb#24.A	1
+A:25:_:ASP	A	25	ASP	RES	 	0	0.000	14.175	11.689	9.522	input_file.pdb#25.A	1
+A:26:_:VAL	A	26	VAL	RES	E	5	0.000	15.649	14.649	7.711	input_file.pdb#26.A	1
+A:27:_:PHE	A	27	PHE	RES	E	3	0.000	19.480	14.649	7.060	input_file.pdb#27.A	1
+A:28:_:VAL	A	28	VAL	RES	E	5	0.000	21.042	17.865	8.454	input_file.pdb#28.A	1
+A:29:_:HIS	A	29	HIS	RES	E	1	0.000	24.431	19.243	7.757	input_file.pdb#29.A	1
+A:30:_:PHE	A	30	PHE	RES	G	4	0.000	26.081	22.000	9.754	input_file.pdb#30.A	1
+A:31:_:SER	A	31	SER	RES	G	0	0.000	25.993	24.399	6.921	input_file.pdb#31.A	1
+A:32:_:ALA	A	32	ALA	RES	G	4	0.000	22.220	24.501	7.386	input_file.pdb#32.A	1
+A:33:_:ILE	A	33	ILE	RES	B	4	0.000	22.574	25.828	10.869	input_file.pdb#33.A	1
+A:34:_:GLN	A	34	GLN	RES	 	4	0.000	21.454	29.401	11.380	input_file.pdb#34.A	1
+A:35:_:GLY	A	35	GLY	RES	S	0	0.000	22.928	31.647	14.028	input_file.pdb#35.A	1
+A:36:_:GLU	A	36	GLU	RES	S	0	0.000	26.346	32.974	14.864	input_file.pdb#36.A	1
+A:37:_:GLY	A	37	GLY	RES	S	0	0.000	29.057	30.830	16.490	input_file.pdb#37.A	1
+A:38:_:PHE	A	38	PHE	RES	S	0	0.000	30.118	27.257	16.165	input_file.pdb#38.A	1
+A:39:_:LYS	A	39	LYS	RES	 	0	0.000	27.525	25.318	14.121	input_file.pdb#39.A	1
+A:40:_:THR	A	40	THR	RES	 	2	0.000	26.405	22.255	16.072	input_file.pdb#40.A	1
+A:41:_:LEU	A	41	LEU	RES	 	2	0.000	23.193	20.775	17.512	input_file.pdb#41.A	1
+A:42:_:GLU	A	42	GLU	RES	 	1	0.000	22.338	18.580	20.484	input_file.pdb#42.A	1
+A:43:_:GLU	A	43	GLU	RES	E	0	0.000	20.364	15.364	20.531	input_file.pdb#43.A	1
+A:44:_:GLY	A	44	GLY	RES	E	4	0.000	16.886	16.283	21.878	input_file.pdb#44.A	1
+A:45:_:GLN	A	45	GLN	RES	E	3	0.000	17.004	19.856	20.856	input_file.pdb#45.A	1
+A:46:_:ALA	A	46	ALA	RES	E	3	0.000	14.028	21.438	19.137	input_file.pdb#46.A	1
+A:47:_:VAL	A	47	VAL	RES	E	3	0.000	14.588	23.225	15.747	input_file.pdb#47.A	1
+A:48:_:SER	A	48	SER	RES	E	4	0.000	12.554	24.909	13.052	input_file.pdb#48.A	1
+A:49:_:PHE	A	49	PHE	RES	E	12	0.000	13.556	24.093	9.522	input_file.pdb#49.A	1
+A:50:_:GLU	A	50	GLU	RES	E	3	0.000	12.584	23.531	5.992	input_file.pdb#50.A	1
+A:51:_:ILE	A	51	ILE	RES	E	2	0.000	13.203	20.520	3.902	input_file.pdb#51.A	1
+A:52:_:VAL	A	52	VAL	RES	E	4	0.000	14.823	21.489	0.511	input_file.pdb#52.A	1
+A:53:_:GLU	A	53	GLU	RES	E	1	0.000	15.000	18.835	-2.090	input_file.pdb#53.A	1
+A:54:_:GLY	A	54	GLY	RES	E	1	0.000	17.181	18.937	-5.202	input_file.pdb#54.A	1
+A:55:_:ASN	A	55	ASN	RES	T	0	0.000	18.743	16.130	-7.153	input_file.pdb#55.A	1
+A:56:_:ARG	A	56	ARG	RES	T	0	0.000	20.717	14.956	-4.181	input_file.pdb#56.A	1
+A:57:_:GLY	A	57	GLY	RES	E	2	0.000	17.505	14.088	-2.230	input_file.pdb#57.A	1
+A:58:_:PRO	A	58	PRO	RES	E	1	0.000	15.855	15.926	0.743	input_file.pdb#58.A	1
+A:59:_:GLN	A	59	GLN	RES	E	2	0.000	17.947	17.712	3.391	input_file.pdb#59.A	1
+A:60:_:ALA	A	60	ALA	RES	E	1	0.000	17.210	20.315	6.085	input_file.pdb#60.A	1
+A:61:_:ALA	A	61	ALA	RES	E	4	0.000	17.711	23.939	5.435	input_file.pdb#61.A	1
+A:62:_:ASN	A	62	ASN	RES	E	1	0.000	17.535	27.002	7.618	input_file.pdb#62.A	1
+A:63:_:VAL	A	63	VAL	RES	E	6	0.000	17.859	25.216	10.916	input_file.pdb#63.A	1
+A:64:_:THR	A	64	THR	RES	E	3	0.000	17.152	27.564	13.749	input_file.pdb#64.A	1
+A:65:_:LYS	A	65	LYS	RES	E	2	0.000	17.564	26.543	17.279	input_file.pdb#65.A	1
+A:66:_:GLU	A	66	GLU	RES	 	6	0.000	13.969	26.747	18.673	input_file.pdb#66.A	1
+A:67:_:ALA	A	67	ALA	RES	 	1	0.000	12.996	25.471	22.157	input_file.pdb#67.A	1

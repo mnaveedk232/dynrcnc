@@ -5,7 +5,7 @@ published order (C1..C6) with the reverse tier order (C6, C5, C4, C3, C2, C1).
 Run inside 04_baselines_265/:  python3 order_test.py"""
 import os, sys, importlib.util, numpy as np, pandas as pd
 C=os.path.expanduser(os.environ.get('CLEAN_DIR','~/Desktop/revision_analysis/00_clean_benchmark'))
-sys.argv=['dynrcnc.py','--base',C,'--ddg',os.path.join(C,'benchmark_271pairs.ddg')]
+sys.argv=['dynrcnc.py','--base',C,'--ddg',os.path.join(C,'benchmark_265pairs.ddg')]
 spec=importlib.util.spec_from_file_location('dm',os.path.join(C,'dynrcnc.py')); dm=importlib.util.module_from_spec(spec); spec.loader.exec_module(dm)
 def rules(s1,s2,mut,comm,r2c,G_nb,bc,direct,linked,rmap,ss,dccm,z):
     """returns list of (criterion, verdict) for every criterion whose condition holds, in published order"""
@@ -37,7 +37,7 @@ def rules(s1,s2,mut,comm,r2c,G_nb,bc,direct,linked,rmap,ss,dccm,z):
     if c5: out.append(('C5',c5))
     if ch1 and ch2 and biso and seq>=8: out.append(('C6','N'))
     return out
-ddg=pd.read_csv(os.path.join(C,'benchmark_271pairs.ddg'),sep='\t',on_bad_lines='skip'); ddg.columns=ddg.columns.str.strip()
+ddg=pd.read_csv(os.path.join(C,'benchmark_265pairs.ddg'),sep='\t',on_bad_lines='skip'); ddg.columns=ddg.columns.str.strip()
 Y=[];F=[];R=[];multi=0;conflict=0
 for pdb in ['1STN','1BNI','2LZM','1PGA','1CSP','2RN2','2CI2']:
     c=dm.PROTEINS[pdb]; comm,r2c,direct,G_nb,bc,linked,last=dm.build_network(c['node_file'],c['edge_file'])

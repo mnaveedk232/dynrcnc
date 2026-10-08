@@ -14,7 +14,7 @@ sampled at 100 ps and corrected for periodic boundaries, exactly as for the benc
 PATHS (edit these four if the folders are elsewhere)
   MODEL_DIR  ./model
                dynrcnc.py                     the published model, imported unchanged
-               benchmark_271pairs.ddg         required by dynrcnc.py at import time
+               benchmark_265pairs.ddg         required by dynrcnc.py at import time
   EXT_DIR    ./data
                <pdb>_md/<pdb>.N               RING 4.0 nodes, default settings
                <pdb>_md/<pdb>.E               RING 4.0 edges
@@ -64,7 +64,7 @@ def cfg(pdb):
 
 # ───────────────────────────────── import the published model
 sys.argv = ['dynrcnc.py', '--base', MODEL_DIR,
-            '--ddg', os.path.join(MODEL_DIR, 'benchmark_271pairs.ddg')]
+            '--ddg', os.path.join(MODEL_DIR, 'benchmark_265pairs.ddg')]
 spec = importlib.util.spec_from_file_location('dynrcnc', os.path.join(MODEL_DIR, 'dynrcnc.py'))
 dm = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(dm)

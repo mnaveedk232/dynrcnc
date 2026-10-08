@@ -4,11 +4,11 @@ first 50 ns of each 200 ns trajectory (DCCM/Z-DCCM from 50-200 ns only). Thresho
 Run inside 04_baselines_265/:  python3 skip50_test.py"""
 import os, sys, importlib.util, numpy as np, pandas as pd
 CLEAN=os.path.expanduser(os.environ.get('CLEAN_DIR','~/Desktop/revision_analysis/00_clean_benchmark'))
-sys.argv=['dynrcnc.py','--base',CLEAN,'--ddg',os.path.join(CLEAN,'benchmark_271pairs.ddg')]
+sys.argv=['dynrcnc.py','--base',CLEAN,'--ddg',os.path.join(CLEAN,'benchmark_265pairs.ddg')]
 spec=importlib.util.spec_from_file_location('dm',os.path.join(CLEAN,'dynrcnc.py'))
 dm=importlib.util.module_from_spec(spec); spec.loader.exec_module(dm)
 PS_PER_FRAME={'1STN':100,'1BNI':100,'2LZM':100,'1PGA':40,'1CSP':40,'2RN2':100,'2CI2':100}
-ddg=pd.read_csv(os.path.join(CLEAN,'benchmark_271pairs.ddg'),sep='\t',on_bad_lines='skip'); ddg.columns=ddg.columns.str.strip()
+ddg=pd.read_csv(os.path.join(CLEAN,'benchmark_265pairs.ddg'),sep='\t',on_bad_lines='skip'); ddg.columns=ddg.columns.str.strip()
 def run(skip):
     dm.SKIP_NS=skip; yt=[];yp=[];per={}
     for pdb,fr in PS_PER_FRAME.items():

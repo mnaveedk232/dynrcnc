@@ -27,12 +27,12 @@ import numpy as np, pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.argv = ['dynrcnc.py', '--base', HERE,
-            '--ddg', os.path.join(HERE, 'benchmark_271pairs.ddg'),
+            '--ddg', os.path.join(HERE, 'benchmark_265pairs.ddg'),
             '--out', os.path.join(HERE, 'clean_out')]
 spec = importlib.util.spec_from_file_location('dynrcnc', os.path.join(HERE, 'dynrcnc.py'))
 dm = importlib.util.module_from_spec(spec); spec.loader.exec_module(dm)
 
-KEEP = ['1STN', '1BNI', '2LZM', '1PGA', '1CSP', '2RN2', '2CI2']   # 1QJP dropped
+KEEP = ['1STN', '1BNI', '2LZM', '1PGA', '1CSP', '2RN2', '2CI2']
 
 
 def predict_open(s1, s2, mut_str, communities, r2c, G_nb, bc, direct,
@@ -116,7 +116,7 @@ def metrics(y, p):
 
 
 def main():
-    ddg = pd.read_csv(os.path.join(HERE, 'benchmark_271pairs.ddg'), sep='\t', on_bad_lines='skip')
+    ddg = pd.read_csv(os.path.join(HERE, 'benchmark_265pairs.ddg'), sep='\t', on_bad_lines='skip')
     ddg.columns = ddg.columns.str.strip()
     rows = []   # one entry per pair: (y, {variant: pred})
     for pdb in KEEP:

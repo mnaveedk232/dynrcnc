@@ -42,6 +42,6 @@ print('\nper-criterion precision:\n' + g.reset_index().to_string(index=False))
 # ---- files of the older run
 for rel in ('results/cutoff_sensitivity.csv', 'results/cascade_multi_criterion.csv', 'code/cascade_precision_cutoff.py', 'code/replicate_convergence.py'): stash(rel)
 tx = P('results/cascade_precision_cutoff_summary.txt')
-if os.path.exists(tx) and any(k in open(tx).read() for k in ('0.554', '0.467', 'TN=182', '271')): stash('results/cascade_precision_cutoff_summary.txt')
+if os.path.exists(tx) and any(k in open(tx).read() for k in ('0.554', '0.467', 'TN=182')): stash('results/cascade_precision_cutoff_summary.txt')
 os.makedirs(P('code'), exist_ok=True); shutil.copy(os.path.abspath(__file__), P('code/derived_results_265.py'))
 print('\nbackup of the replaced files:', B)

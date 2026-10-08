@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Merge ve_out/ve2_*.csv into the 135-cell virtual-edge grid (logic of merge_grid_271.py)
+"""Merge ve_out/ve2_*.csv into the 135-cell virtual-edge grid
 and run McNemar DynRCNC vs best virtual edge (logic of mcnemar_ve.py), CLEAN 265 pairs.
 Run inside 04_baselines_265/:  python3 ve_merge_mcnemar_265.py"""
 import os, glob, math, numpy as np, pandas as pd

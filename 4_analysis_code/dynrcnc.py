@@ -10,7 +10,7 @@ Method: Static RCNC network plus MD-derived dynamic coupling (Z-scored DCCM),
         internal rules; see CRITERION_OF_RULE below for the mapping.
 
 Benchmark: 265 experimentally characterized double-mutation pairs across
-           seven soluble proteins (1QJP, a membrane protein, is excluded).
+           seven soluble proteins.
 
 
 Usage:
@@ -149,12 +149,11 @@ def preprocess_ddg(ddg_df):
     point (following Zhang et al. 2024), giving the 265-pair benchmark
     reported in the manuscript. Pairs with identical mutation, pH, method and
     dddG are genuine repeated measurements in the benchmark and are kept.
-    Rows of 1QJP (a membrane protein simulated without a lipid bilayer) are
-    removed if present, so the older 271-pair file also gives 265 pairs."""
+    Rows of proteins without a data folder are removed."""
     n_before = len(ddg_df)
-    ddg_df = ddg_df[ddg_df['PDB'].astype(str).str.strip() != '1QJP']
+    ddg_df = ddg_df[ddg_df['PDB'].astype(str).str.strip().isin(PROTEINS.keys())]
     if len(ddg_df) != n_before:
-        print(f"  Removed {n_before - len(ddg_df)} rows of 1QJP (not part of the benchmark)")
+        print(f"  Removed {n_before - len(ddg_df)} rows of proteins outside the benchmark")
     return ddg_df.reset_index(drop=True)
 
 
