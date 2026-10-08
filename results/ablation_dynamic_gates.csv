@@ -1,0 +1,10 @@
+Dynamic condition(s) opened,n,Flips,TP,TN,FP,FN,Sens,Spec,MCC,dMCC
+None (full DynRCNC),0,0,40,184,27,14,74.1,87.2,0.568,0.0
+C1 clique community,1,0,40,184,27,14,74.1,87.2,0.568,0.0
+C2 direct contact,1,2,40,182,29,14,74.1,86.3,0.554,-0.014
+C3 dynamic coupling,4,34,45,155,56,9,83.3,73.5,0.471,-0.097
+C4 sequential backbone,1,6,40,178,33,14,74.1,84.4,0.527,-0.041
+C5 forward coupling cutoffs,2,0,40,184,27,14,74.1,87.2,0.568,0.0
+C5 hub exclusion gate,1,3,41,182,29,13,75.9,86.3,0.568,0.0
+C6 electrostatic coupling,-,0,40,184,27,14,74.1,87.2,0.568,0.0
+All dynamic conditions,10,44,45,145,66,9,83.3,68.7,0.425,-0.143

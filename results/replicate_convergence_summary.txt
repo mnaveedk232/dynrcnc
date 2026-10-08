@@ -1,0 +1,24 @@
+============================================================
+  REPLICATE Z-DCCM CONVERGENCE ANALYSIS
+  265 benchmark pairs x 3 replicates (replicate 1 = primary trajectory)
+============================================================
+
+1. Z-DCCM variability across replicates
+   Mean per-pair SD of |Z-DCCM| : 0.344
+   Median per-pair SD           : 0.286
+   Mean |Z-DCCM|                : 0.966
+   Inter-replicate Pearson r:
+     z_rep1 vs z_rep2: 0.616
+     z_rep1 vs z_rep3: 0.616
+     z_rep2 vs z_rep3: 0.744
+
+2. Classification stability
+   Identical prediction in all replicates: 229/265 (86.4%)
+   Pairs whose prediction changes        : 36
+
+3. Combined MCC per replicate
+   rep1: TP=40 TN=184 FP=27 FN=14  Sens=74.1% Spec=87.2%  MCC=0.568
+   rep2: TP=34 TN=176 FP=35 FN=20  Sens=63.0% Spec=83.4%  MCC=0.426
+   rep3: TP=29 TN=180 FP=31 FN=25  Sens=53.7% Spec=85.3%  MCC=0.375
+
+   MCC mean = 0.456 +/- 0.100  (range 0.375-0.568)

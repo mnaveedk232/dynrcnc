@@ -1,0 +1,4 @@
+method,in_sample_MCC,LOPOCV_weighted_MCC,LOPOCV_pooled_MCC,gap,LOPOCV_sens,LOPOCV_spec
+RandomForest,0.7861,0.0855,0.0676,0.7007,0.037,0.9858
+GradientBoosting,0.7692,0.0304,0.1886,0.7389,0.3148,0.8626
+LogisticRegression,0.3856,0.0202,0.0711,0.3654,0.3704,0.7109
