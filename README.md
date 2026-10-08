@@ -6,7 +6,7 @@ On a benchmark of 265 measured double-mutant pairs from seven soluble proteins, 
 
 This repository holds everything behind the numbers in the paper:
 
-Naveed M, Zhang J, Sajid AQ, Fatima A, Ming D. *Context-Dependent Dynamic Coupling in Residue Contact Networks Underlies Thermodynamic Non-Additivity in Protein Double Mutants.* Biopolymers (accepted).
+Naveed M, Zhang J, Sajid AQ, Fatima A, Ming D. *Context-Dependent Dynamic Coupling in Residue Contact Networks Underlies Thermodynamic Non-Additivity in Protein Double Mutants.* Biopolymers.
 
 ## What is in the repository
 
